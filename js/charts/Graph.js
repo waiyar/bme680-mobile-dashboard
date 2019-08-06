@@ -11,7 +11,7 @@ const formatTime = d3.time.timeFormat("%d/%m");
 
 export default class Graph extends React.Component {
     state = {
-        visible: [true, true]
+        visible: [true, true, true]
     }
 
     hideLine = (index) => {
@@ -23,13 +23,13 @@ export default class Graph extends React.Component {
             return null;
         }
 
-        let data = [[], []];    // Change array size depending on number of attribute.
+        let data = [[], [], []];    // Change array size depending on number of attribute.
         Object.keys(this.props.data).map((key, index) => {
             this.props.data[key].map((d, i) => {
                 data[index][i] = { ts: parseTime(d.ts), value: d.value };
             });
+            console.log(key);
         });
-        console.log(data)
         // find maxima for normalizing data
         const maxima = data.map(
             dataset => Math.max(...dataset.map(d => d.value))
@@ -40,8 +40,8 @@ export default class Graph extends React.Component {
         const range = maxima.map((d, i) => (d - minima[i]));
 
         const labels = ['Humidity/%rH', 'Temperature/°C']
-        let xOffsets = [50, 350];   // [50, 200, 350] for 3 lines
-        const tickPadding = [0, -50];   // [0, 0, -20] for 3
+        let xOffsets = [50, 200, 350];   // [50, 200, 350] for 3 lines
+        const tickPadding = [0, 0, -20];   // [0, 0, -20] for 3
         const anchors = ["end", "end", "start"];
         const { colors } = this.props;
         return (
@@ -74,7 +74,7 @@ export default class Graph extends React.Component {
                     domain={{ y: [0, 1] }}
                 >
                     <VictoryAxis
-                        // tickFormat={d => formatTime(d)}
+                        // tickFormat={d => formatTime(d)}  // Uncomment if have multiple dates
                         style={{ tickLabels: { fill: "#ffffff" }, grid: { stroke: "none" } }}
                     />
                     {data.map((d, i) => (
@@ -110,7 +110,7 @@ export default class Graph extends React.Component {
                         }
                     })}
                 </VictoryChart>
-                <Text style={{ color: 'white' }}>{formatTime(data[0][0].ts)}</Text>
+                <Text style={{ color: 'white' }}>{formatTime(data[0][0].ts)} - {formatTime(data[0][data[0].length - 1].ts)}</Text>
             </View>
         )
     }

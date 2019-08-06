@@ -85,12 +85,12 @@ export default class GaugeTab extends React.Component {
                                 <AnimatedGauge width={250} height={250} domain={[10, 80]} value={this.state.temperature} unit="°C" />
                             </View>
                         </View>
-                        {/* <View style={{ alignItems: "center" }}>
+                        <View style={{ alignItems: "center" }}>
                             <Text style={{ fontSize: 22, color: this.props.colors[1] }}>Pressure</Text>
                             <View style={{ height: 150 }}>
                                 <AnimatedGauge width={250} height={250} domain={[500, 2000]} value={this.state.pressure} unit="hPa" />
                             </View>
-                        </View> */}
+                        </View>
                         <View style={{ alignItems: "center" }}>
                             <Text style={{ fontSize: 22, color: this.props.colors[2] }}>Humidity</Text>
                             <View style={{ height: 150 }}>
