@@ -40,7 +40,7 @@ export default class Graph extends React.Component {
         const range = maxima.map((d, i) => (d - minima[i]));
 
         const labels = ['Humidity/%rH', 'Pressure/hPa','Temperature/°C']
-        let xOffsets = [50, 200, 350];   // [50, 200, 350] for 3 lines
+        let xOffsets = [50, 185, 320];   // [50, 200, 350] for 3 lines
         const tickPadding = [0, 0, -20];   // [0, 0, -20] for 3
         const anchors = ["end", "end", "start"];
         const { colors } = this.props;
@@ -86,7 +86,8 @@ export default class Graph extends React.Component {
                                 axis: { stroke: colors[i] },
                                 ticks: { padding: tickPadding[i] },
                                 tickLabels: { fill: colors[i], textAnchor: anchors[i] },
-                                grid: { stroke: "none" }
+                                grid: { stroke: "none" },
+                                labels: { padding: 10, textAnchor: "middle"}
                             }}
                             // Use normalized tickValues (0 - 1)
                             tickValues={[0.25, 0.5, 0.75, 1]}
