@@ -39,7 +39,7 @@ export default class Graph extends React.Component {
         );
         const range = maxima.map((d, i) => (d - minima[i]));
 
-        const labels = ['Humidity/%rH', 'Temperature/°C']
+        const labels = ['Humidity/%rH', 'Pressure/hPa','Temperature/°C']
         let xOffsets = [50, 200, 350];   // [50, 200, 350] for 3 lines
         const tickPadding = [0, 0, -20];   // [0, 0, -20] for 3
         const anchors = ["end", "end", "start"];
@@ -75,6 +75,7 @@ export default class Graph extends React.Component {
                 >
                     <VictoryAxis
                         // tickFormat={d => formatTime(d)}  // Uncomment if have multiple dates
+                        tickCount={5}
                         style={{ tickLabels: { fill: "#ffffff" }, grid: { stroke: "none" } }}
                     />
                     {data.map((d, i) => (
